@@ -1,0 +1,19 @@
+name: Run tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: OS platforms on which to run tests
+        default: '[ubuntu-20.04]'
+        type: string
+        required: false
+
+jobs:
+  run-tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: ${{ inputs.platform}}
+    steps:
+      - run: echo "Hello world!"
